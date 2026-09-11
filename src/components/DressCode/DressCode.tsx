@@ -6,7 +6,7 @@ export default function DressCode() {
       <div className="mx-auto max-w-5xl px-6">
         <div className="mb-16 text-center">
           <p className="uppercase tracking-[0.35em] text-[#6E7D98]">
-            DRESS CODE
+            DRESS CODE 
           </p>
 
           <h2
