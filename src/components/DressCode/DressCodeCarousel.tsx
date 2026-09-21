@@ -29,7 +29,7 @@ export default function DressCodeCarousel() {
             <img
               src="/images/dresscode.png"
               alt="Dress Code"
-              className="h-[450px] w-full object-contain p-4"
+              className="h-[320px] w-full object-contain p-4 sm:h-[450px]"
             />
           </div>
 

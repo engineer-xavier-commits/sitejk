@@ -1,6 +1,6 @@
 export default function PaletteSugerida() {
   return (
-    <div className="flex h-[450px] w-full flex-col items-center justify-center bg-[#F0EFE7] p-8 text-center">
+    <div className="flex h-[320px] w-full flex-col items-center justify-center bg-[#F0EFE7] p-6 text-center sm:h-[450px] sm:p-8">
       <p className="uppercase tracking-[0.3em] text-[#2E3A2F]">
         Paleta sugerida
       </p>

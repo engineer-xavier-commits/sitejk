@@ -29,38 +29,38 @@ const story = [
 
 export default function Story() {
   return (
-    <section id="historia" className="bg-white py-28">
+    <section id="historia" className="bg-white py-20 sm:py-28">
       <div className="mx-auto max-w-7xl">
-        <p className="text-center uppercase tracking-[0.35em] text-[#6E7D98]">
+        <p className="text-center text-xs uppercase tracking-[0.22em] text-[#6E7D98] sm:text-base sm:tracking-[0.35em]">
           NOSSA HISTÓRIA
         </p>
 
         <h2
-          className="mt-4 text-center text-5xl text-[#6E7D98]"
+          className="mt-4 text-center text-3xl text-[#6E7D98] sm:text-5xl"
           style={{ fontFamily: "var(--font-cormorant)" }}
         >
           Nossa jornada até o altar
         </h2>
 
-        <div className="mt-16 overflow-x-auto scroll-smooth px-6">
-          <div className="flex gap-8 pb-6">
+        <div className="mt-10 overflow-x-auto scroll-smooth px-4 sm:mt-16 sm:px-6">
+          <div className="flex gap-4 pb-6 sm:gap-8">
             {story.map((item) => (
               <div
                 key={item.year}
-                className="min-w-[360px] max-w-[360px] flex-shrink-0 rounded-3xl border border-gray-200 bg-[#FAF8F5] p-10 shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-xl"
+                className="min-w-[280px] max-w-[280px] flex-shrink-0 rounded-3xl border border-gray-200 bg-[#FAF8F5] p-6 shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-xl sm:min-w-[360px] sm:max-w-[360px] sm:p-10"
               >
-                <span className="text-sm uppercase tracking-[0.3em] text-[#6E7D98]">
+                <span className="text-xs uppercase tracking-[0.25em] text-[#6E7D98] sm:text-sm">
                   {item.year}
                 </span>
 
                 <h3
-                  className="mt-4 text-3xl text-[#6E7D98]"
+                  className="mt-4 text-2xl text-[#6E7D98] sm:text-3xl"
                   style={{ fontFamily: "var(--font-cormorant)" }}
                 >
                   {item.title}
                 </h3>
 
-                <p className="mt-6 leading-8 text-gray-600">
+                <p className="mt-5 text-sm leading-7 text-gray-600 sm:mt-6 sm:text-base sm:leading-8">
                   {item.description}
                 </p>
               </div>

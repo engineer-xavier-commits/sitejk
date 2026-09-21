@@ -1,6 +1,6 @@
 export default function PaletteEvitar() {
   return (
-    <div className="flex h-[450px] w-full flex-col items-center justify-center bg-[#F0F3F7] p-8 text-center">
+    <div className="flex h-[320px] w-full flex-col items-center justify-center bg-[#F0F3F7] p-6 text-center sm:h-[450px] sm:p-8">
       <p className="uppercase tracking-[0.3em] text-[#6E7D98]">
         Evitar esta paleta
       </p>

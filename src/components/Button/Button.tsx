@@ -8,12 +8,12 @@ export default function Button({ children, onClick }: ButtonProps) {
     <button
       onClick={onClick}
       className="
-        mt-12
+        mt-0
         rounded-full
         border
         border-[#6E7D98]
-        px-8
-        py-4
+        px-6
+        py-3
         uppercase
         tracking-[0.2em]
         text-[#6E7D98]
@@ -21,6 +21,9 @@ export default function Button({ children, onClick }: ButtonProps) {
         duration-300
         hover:bg-[#6E7D98]
         hover:text-white
+        sm:mt-12
+        sm:px-8
+        sm:py-4
       "
     >
       {children}
