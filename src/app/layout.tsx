@@ -24,9 +24,34 @@ const greatVibes = Great_Vibes({
   variable: "--font-great-vibes",
 });
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://sitejk.com";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: "Juliah & Kayky",
   description: "Convite de casamento de Juliah e Kayky",
+  openGraph: {
+    title: "Juliah & Kayky",
+    description: "Convite de casamento de Juliah e Kayky",
+    url: siteUrl,
+    siteName: "Juliah & Kayky",
+    locale: "pt_BR",
+    type: "website",
+    images: [
+      {
+        url: "/images/jek.png",
+        width: 1200,
+        height: 630,
+        alt: "Juliah & Kayky",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Juliah & Kayky",
+    description: "Convite de casamento de Juliah e Kayky",
+    images: ["/images/jek.png"],
+  },
 };
 
 export const viewport = {
