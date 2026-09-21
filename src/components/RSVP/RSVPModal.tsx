@@ -36,6 +36,11 @@ export default function RSVPModal({
       return;
     }
 
+    if (!supabase) {
+      setError("As variáveis do Supabase ainda não foram configuradas no deploy.");
+      return;
+    }
+
     setLoading(true);
     setError("");
     setGuest(null);
@@ -88,6 +93,11 @@ export default function RSVPModal({
 
   async function confirmPresence() {
     if (!guest) return;
+
+    if (!supabase) {
+      setError("As variáveis do Supabase ainda não foram configuradas no deploy.");
+      return;
+    }
 
     setLoading(true);
 

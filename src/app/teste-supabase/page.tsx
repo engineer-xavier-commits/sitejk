@@ -1,6 +1,19 @@
 import { supabase } from "@/lib/supabase";
 
 export default async function TesteSupabase() {
+  if (!supabase) {
+    return (
+      <main className="p-10">
+        <h1 className="text-3xl font-bold">
+          Teste Supabase
+        </h1>
+        <p className="mt-6 text-red-600">
+          Variáveis do Supabase não configuradas no ambiente do deploy.
+        </p>
+      </main>
+    );
+  }
+
   const { data, error } = await supabase
     .from("guests")
     .select("*");
