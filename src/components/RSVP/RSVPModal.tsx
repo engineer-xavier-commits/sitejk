@@ -58,8 +58,6 @@ export default function RSVPModal({
       const response = await fetch(spreadsheetUrl, {
         method: "POST",
         mode: "cors",
-        cache: "no-store",
-        credentials: "omit",
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
