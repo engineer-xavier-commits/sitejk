@@ -7,7 +7,7 @@ type RSVPModalProps = {
   onClose: () => void;
 };
 
-const spreadsheetUrl = process.env.NEXT_PUBLIC_GOOGLE_SHEETS_WEBAPP_URL;
+const spreadsheetUrl = process.env.NEXT_PUBLIC_GOOGLE_SHEETS_WEBAPP_URL?.trim();
 
 export default function RSVPModal({
   open,
@@ -18,6 +18,7 @@ export default function RSVPModal({
   const [error, setError] = useState("");
   const [screen, setScreen] = useState<"form" | "confirmed">("form");
   const [confirmedName, setConfirmedName] = useState("");
+  const isSheetConfigured = Boolean(spreadsheetUrl);
 
   if (!open) return null;
 
@@ -38,7 +39,15 @@ export default function RSVPModal({
     }
 
     if (!spreadsheetUrl) {
-      setError("A URL do Google Sheets ainda não foi configurada no deploy.");
+      console.warn(
+        "NEXT_PUBLIC_GOOGLE_SHEETS_WEBAPP_URL não configurada. Usando modo local para confirmar o nome:",
+        normalizedName
+      );
+
+      setConfirmedName(normalizedName);
+      setName("");
+      setScreen("confirmed");
+      setError("");
       return;
     }
 
@@ -49,6 +58,7 @@ export default function RSVPModal({
       const response = await fetch(spreadsheetUrl, {
         method: "POST",
         headers: {
+          "Accept": "application/json",
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
@@ -58,8 +68,18 @@ export default function RSVPModal({
         }),
       });
 
-      if (!response.ok) {
-        throw new Error("Falha ao salvar a confirmação.");
+      let payload: { ok?: boolean; error?: string } | null = null;
+
+      try {
+        payload = await response.json();
+      } catch {
+        payload = null;
+      }
+
+      if (!response.ok || payload?.ok === false) {
+        throw new Error(
+          payload?.error || "Falha ao salvar a confirmação no Google Sheets."
+        );
       }
 
       setConfirmedName(normalizedName);
@@ -67,7 +87,11 @@ export default function RSVPModal({
       setScreen("confirmed");
     } catch (err) {
       console.error(err);
-      setError("Não foi possível registrar sua presença. Tente novamente.");
+      setError(
+        err instanceof Error && err.message
+          ? err.message
+          : "Não foi possível registrar sua presença. Tente novamente."
+      );
     } finally {
       setLoading(false);
     }
@@ -89,8 +113,7 @@ export default function RSVPModal({
         {screen === "form" && (
           <>
             <p className="mt-6 text-gray-600">
-              Digite seu nome para confirmar a presença. Qualquer nome pode ser
-              incluído e registrado na planilha.
+              Digite seu nome para confirmar a presença.
             </p>
 
             <div className="mt-10 space-y-6">
@@ -138,7 +161,9 @@ export default function RSVPModal({
             </h3>
 
             <p className="mt-6 text-gray-600">
-              Muito obrigado! Sua presença foi registrada e enviada para a planilha.
+              {isSheetConfigured
+                ? "Muito obrigado! Sua presença foi registrada e enviada para a planilha."
+                : "Muito obrigado! Sua presença foi registrada em modo local. Configure a variável de ambiente do Google Sheets para sincronizar com a planilha."}
             </p>
 
             <button
