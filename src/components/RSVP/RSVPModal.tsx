@@ -57,8 +57,11 @@ export default function RSVPModal({
     try {
       const response = await fetch(spreadsheetUrl, {
         method: "POST",
+        mode: "cors",
+        cache: "no-store",
+        credentials: "omit",
         headers: {
-          "Accept": "application/json",
+          Accept: "application/json",
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
@@ -87,10 +90,16 @@ export default function RSVPModal({
       setScreen("confirmed");
     } catch (err) {
       console.error(err);
+
+      const isNetworkFailure =
+        err instanceof TypeError && err.message === "Failed to fetch";
+
       setError(
-        err instanceof Error && err.message
-          ? err.message
-          : "Não foi possível registrar sua presença. Tente novamente."
+        isNetworkFailure
+          ? "Não foi possível conectar ao Google Sheets. Verifique a URL do Apps Script e as permissões de acesso do deploy."
+          : err instanceof Error && err.message
+            ? err.message
+            : "Não foi possível registrar sua presença. Tente novamente."
       );
     } finally {
       setLoading(false);
