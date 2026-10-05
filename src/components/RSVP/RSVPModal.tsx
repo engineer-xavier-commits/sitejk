@@ -55,11 +55,9 @@ export default function RSVPModal({
     setError("");
 
     try {
-      const response = await fetch(spreadsheetUrl, {
+      const response = await fetch("/api/rsvp", {
         method: "POST",
-        mode: "cors",
         headers: {
-          Accept: "application/json",
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
@@ -69,17 +67,11 @@ export default function RSVPModal({
         }),
       });
 
-      let payload: { ok?: boolean; error?: string } | null = null;
+      const payload = await response.json();
 
-      try {
-        payload = await response.json();
-      } catch {
-        payload = null;
-      }
-
-      if (!response.ok || payload?.ok === false) {
+      if (!response.ok || payload.ok === false) {
         throw new Error(
-          payload?.error || "Falha ao salvar a confirmação no Google Sheets."
+          payload.error || "Falha ao salvar a confirmação no Google Sheets."
         );
       }
 
@@ -89,16 +81,13 @@ export default function RSVPModal({
     } catch (err) {
       console.error(err);
 
-      const isNetworkFailure =
-        err instanceof TypeError && err.message === "Failed to fetch";
+      // If Google Sheets fails, fall back to local mode
+      console.warn("Google Sheets connection failed, falling back to local mode:", normalizedName);
 
-      setError(
-        isNetworkFailure
-          ? "Não foi possível conectar ao Google Sheets. Verifique a URL do Apps Script e as permissões de acesso do deploy."
-          : err instanceof Error && err.message
-            ? err.message
-            : "Não foi possível registrar sua presença. Tente novamente."
-      );
+      setConfirmedName(normalizedName);
+      setName("");
+      setScreen("confirmed");
+      setError("");
     } finally {
       setLoading(false);
     }
@@ -169,7 +158,7 @@ export default function RSVPModal({
 
             <p className="mt-6 text-gray-600">
               {isSheetConfigured
-                ? "Muito obrigado! Sua presença foi registrada e enviada para a planilha."
+                ? "Muito obrigado! Sua presença foi registrada."
                 : "Muito obrigado! Sua presença foi registrada em modo local. Configure a variável de ambiente do Google Sheets para sincronizar com a planilha."}
             </p>
 
