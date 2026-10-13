@@ -30,6 +30,10 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: "Juliah & Kayky",
   description: "Convite de casamento de Juliah e Kayky",
+  icons: {
+    icon: "/favicon.svg",
+    apple: "/favicon-192x192.png",
+  },
   openGraph: {
     title: "Juliah & Kayky",
     description: "Convite de casamento de Juliah e Kayky",
