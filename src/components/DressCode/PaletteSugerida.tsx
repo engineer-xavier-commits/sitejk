@@ -17,10 +17,10 @@ export default function PaletteSugerida() {
       </p>
 
       <div className="mt-8 flex justify-center gap-4">
-        <div className="h-14 w-14 rounded-full bg-[#C1E1C1] shadow-inner" />
-        <div className="h-14 w-14 rounded-full bg-[#B8D4B8] shadow-inner" />
-        <div className="h-14 w-14 rounded-full bg-[#E8D5C4] shadow-inner" />
         <div className="h-14 w-14 rounded-full bg-[#E6E6FA] shadow-inner" />
+        <div className="h-14 w-14 rounded-full bg-[#C1E1C1] shadow-inner" />
+        <div className="h-14 w-14 rounded-full bg-[#FFB6C1] shadow-inner" />
+        <div className="h-14 w-14 rounded-full bg-[#F0E68C] shadow-inner" />
       </div>
     </div>
   );
