@@ -9,7 +9,7 @@ export default function PaletteSugerida() {
         className="mt-4 text-2xl text-[#2E3A2F] md:text-3xl"
         style={{ fontFamily: "var(--font-cormorant)" }}
       >
-        Verde, preto e cinza
+        Tons pastéis
       </h2>
 
       <p className="mt-2 text-sm text-[#6B7A6D]">
@@ -17,10 +17,10 @@ export default function PaletteSugerida() {
       </p>
 
       <div className="mt-8 flex justify-center gap-4">
-        <div className="h-14 w-14 rounded-full bg-[#3E4F3A] shadow-inner" />
-        <div className="h-14 w-14 rounded-full bg-[#6B8062] shadow-inner" />
-        <div className="h-14 w-14 rounded-full bg-[#111111] shadow-inner" />
-        <div className="h-14 w-14 rounded-full bg-[#8C9089] shadow-inner" />
+        <div className="h-14 w-14 rounded-full bg-[#C1E1C1] shadow-inner" />
+        <div className="h-14 w-14 rounded-full bg-[#B8D4B8] shadow-inner" />
+        <div className="h-14 w-14 rounded-full bg-[#E8D5C4] shadow-inner" />
+        <div className="h-14 w-14 rounded-full bg-[#E6E6FA] shadow-inner" />
       </div>
     </div>
   );
